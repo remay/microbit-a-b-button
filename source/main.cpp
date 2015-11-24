@@ -15,11 +15,11 @@
 
 #include "MicroBit.h"
 
-void onButtonAClick(MicroBitEvent evt) {   
+void onButtonAClick(MicroBitEvent) {   
     uBit.display.print('A');  
 }
 
-void onButtonBClick(MicroBitEvent evt) {   
+void onButtonBClick(MicroBitEvent) {   
     uBit.display.print('B');  
 }
 
