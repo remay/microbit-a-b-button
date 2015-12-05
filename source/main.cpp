@@ -14,6 +14,10 @@
  */
 
 #include "MicroBit.h"
+#include "device_manager.h"
+
+// Uncomment next line to get perhiperal to request a connection be secured as soon as the connection is opened
+//#define SECRURE_ON_CONNECTION
 
 void onButtonAClick(MicroBitEvent) {   
     uBit.display.print('A');  
@@ -23,10 +27,32 @@ void onButtonBClick(MicroBitEvent) {
     uBit.display.print('B');  
 }
 
+#ifdef SECURE_ON_CONNECTION 
+void connectionCallback(const Gap::ConnectionCallbackParams_t *params) {
+
+    uBit.display.print('C');  
+    dm_handle_t dmHandle = {
+        .appl_id = 0,
+    };
+    if (dm_handle_get(params->handle, &dmHandle) != NRF_SUCCESS) {
+        uBit.panic(1);
+    }
+
+    if (dm_security_setup_req(&dmHandle) != NRF_SUCCESS) {
+        uBit.panic(2);
+    }
+
+}
+#endif
+
 void app_main() {
     uBit.MessageBus.listen(MICROBIT_ID_BUTTON_A, MICROBIT_BUTTON_EVT_CLICK, onButtonAClick);
     uBit.MessageBus.listen(MICROBIT_ID_BUTTON_B, MICROBIT_BUTTON_EVT_CLICK, onButtonBClick);
     uBit.display.print('X');
+
+#ifdef SECURE_ON_CONNCTION
+    uBit.ble->gap().onConnection(connectionCallback);
+#endif
 
     while (1) {
        uBit.sleep(1000);
