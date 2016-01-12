@@ -1,6 +1,6 @@
 {
   "name": "microbit-a-b-button",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A or B displayed depending on button pressed",
   "licenses": [
     {
@@ -10,9 +10,7 @@
   ],
   "dependencies": {
       "mbed-classic": "~0.0.4",
-      "ble": "lancaster-university/BLE_API#master",
-      "ble-nrf51822": "lancaster-university/nrf51822#master",
-      "microbit-dal":"lancaster-university/microbit-dal#master"
+      "microbit-dal":"lancaster-university/microbit-dal#v1.4.3"
   },
   "targetDependencies": {},
   "bin": "./source"

@@ -16,10 +16,12 @@
 #include "MicroBit.h"
 
 void onButtonAClick(MicroBitEvent evt) {   
+    (void)evt;
     uBit.display.print('A');  
 }
 
 void onButtonBClick(MicroBitEvent evt) {   
+    (void)evt;
     uBit.display.print('B');  
 }
 
