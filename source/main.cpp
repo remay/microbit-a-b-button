@@ -14,10 +14,16 @@
  */
 
 #include "MicroBit.h"
-#include "device_manager.h"
 
 // Uncomment next line to get perhiperal to request a connection be secured as soon as the connection is opened
 //#define SECRURE_ON_CONNECTION
+#ifdef SECURE_ON_CONNECTION 
+#pragma GCC diagnostic ignored "-Wunused-function"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#include "device_manager.h"
+#pragma GCC diagnostic pop
+#endif
 
 void onButtonAClick(MicroBitEvent) {   
     uBit.display.print('A');  
